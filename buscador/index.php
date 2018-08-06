@@ -26,7 +26,7 @@
       <h1>Buscador</h1>
     </div>
     <div class="colFiltros">
-      <form action="./buscador.php" method="post" id="formulario">
+      <form action="php/buscador.php" method="post" id="formulario">
         <div class="filtrosContenido">
           <div class="tituloFiltros">
             <h5>Realiza una búsqueda personalizada</h5>
@@ -63,7 +63,7 @@
             <input type="text" id="rangoPrecio" name="precio" value="" />
           </div>
           <div class="botonField">
-            <input type="submit" class="btn white" value="Buscar" id="submitButton">
+            <input type="submit" onclick="busqueda()" class="btn white" value="Buscar" id="submitButton">
           </div>
         </div>
       </form>

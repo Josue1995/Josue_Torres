@@ -84,3 +84,33 @@ function listar() {
 }
 
 listar();
+
+function busqueda() {
+  var c = $("#selectCiudad").val();
+  var t = $("#selectTipo").val();
+  var r = $("#rangoPrecio").val();
+
+  $("#formulario").on('click', function (event) {
+    event.preventDefault();
+    $.ajax({
+      url : './php/buscador.php',
+      type : 'POST',
+      data : {'ciudad':c, 'tipo':t, 'precio':r},
+      async : true,
+      beforeSend : function () {
+        $(".datos").remove();
+      },
+      success : function (data) {
+        var response = JSON.parse(data);
+        var div = $(".tituloContenido");
+        for (var i = 0; i < response.length; i++) {
+          $(div).append("<div class='datos'>"+"<span class='card-title'>"+"Direcciòn: "+response[i].Direccion+"</span>"+
+            "<p>"+"Ciudad: "+response[i].Ciudad+"</p><br/><p>"+"Telefono: "+response[i].Telefono+"</p><br/>"+"<p>"+"Codigo postal: "+response[i].Codigo_Postal+"</p><br/>"+
+            "<p>"+"Tipo: "+response[i].Tipo+"</p><br/>"+"<p>"+"Precio: "+response[i].Precio+"</p>"+
+            "</div>");
+        }
+      }
+    })
+  });
+
+}
